@@ -18,7 +18,7 @@ import p16_img from './product_16.webp'
 let all_product = [
    {
        id:1,
-       name:"Bora NPK 17:17:17 Fertilizer 10KG",
+       name:"Bora NPK 17:17:17 Fertilizer",
        category: "npk",
        image: p1_img,
        new_price: "KSh2399",
@@ -34,7 +34,7 @@ let all_product = [
    },
    {
        id:3,
-       name:"Evergrow Organic Fertilizer NPK+TE 50Kg",
+       name:"Evergrow Organic Fertilizer NPK+TE",
        category: "organic",
        image:p3_img,
        new_price: "KSh2300",
@@ -42,7 +42,7 @@ let all_product = [
    },
    {
        id:4,
-       name:"DMBL Ruiru NPK 17-17-17 Fertilizer 25kg",
+       name:"DMBL Ruiru NPK 17-17-17 Fertilizer ",
        category: "npk",
        image:p4_img,
        new_price: "KSh2850",
@@ -50,7 +50,7 @@ let all_product = [
    },
    {
     id:5,
-    name:"DMBL Ruiru Urea 46%N Fertilizer 25kg",
+    name:"DMBL Ruiru Urea 46%N Fertilizer",
     category: "nitrate",
     image:p5_img,
     new_price: "KSh2850",
@@ -87,7 +87,7 @@ let all_product = [
 },
 {
     id:10,
-    name:"Gold Chance Compound FOLIAR FERTILIZER 19:19:19 + Te 1kg",
+    name:"Gold Chance Compound FOLIAR FERTILIZER 19:19:19 + Te ",
     category: "npk",
     image:p10_img,
     price: "KSh750",
@@ -101,14 +101,14 @@ let all_product = [
 },
 {
     id:12,
-    name:"BoraBora Urea (46% N) FERTILIZER 10kg Bag",
+    name:"BoraBora Urea (46% N) FERTILIZER ",
     category: "nitrate",
     image:p12_img,
     price: "KSh1500",
 },
 {
     id:13,
-    name:"Goldchance Super Start Foliar Fertilizer 14:28:18+Te. 1kg",
+    name:"Goldchance Super Start Foliar Fertilizer 14:28:18+Te.",
     category: "npk",
     image:p13_img,
     price: "KSh750",
@@ -129,7 +129,7 @@ let all_product = [
 },
 {
     id:16,
-    name:"Super Gro Organic Fertilizer 20% 1litre",
+    name:"Super Gro Organic Fertilizer 20%",
     category: "organic",
     image:p16_img,
     price: "KSh2500",

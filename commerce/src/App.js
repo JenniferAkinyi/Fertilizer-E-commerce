@@ -5,8 +5,9 @@ import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import {Shop} from './Pages/Shop'
 import {Product} from './Pages/Product'
 import { ShopCategory } from './Pages/ShopCategory';
-import { LoginSignup } from './Pages/LoginSignup';
-import {Cart} from './Pages/Cart'
+import { Login } from './Pages/Login';
+import { Signup } from './Pages/Signup';
+import {Cart} from './Pages/Cart';
 import { Footer } from './Components/Footer/Footer';
 
 
@@ -26,7 +27,9 @@ function App() {
           <Route path=':productid' element={<Product/>}/>
         </Route>
         <Route path='/cart' element={<Cart/>}/>
-        <Route path='/login' element={<LoginSignup/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Login />} /> {/* Default route */}
       </Routes>
       <Footer/>
       </BrowserRouter>

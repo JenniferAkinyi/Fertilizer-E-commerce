@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import './CSS/ShopCategory.css';
 import { ShopContext} from '../Context/ShopContext';
-import dropdown_icon from '../Components/Assets/dropdown.png';
 import {Item} from '../Components/Item/Item';
 
 export const ShopCategory = (props) => {
@@ -10,12 +9,7 @@ export const ShopCategory = (props) => {
   return (
     <div className='shop-category'>
       <div className="shopcategory-indexSort">
-        <p>
-          <span>Showing 1-8</span> out of 16 products
-        </p>
-        <div className="shopcategory-sort">
-          Sort by <img src={dropdown_icon} alt="" />
-        </div>
+          <h1>ALL FERTILIZERS</h1>
       </div>
       <div className="shopcategory-products">
         {all_product.map((item,i)=>{

@@ -11,7 +11,7 @@ import p10_img from './product_10.webp'
 const products = [
    {
        id:1,
-       name:"Bora NPK 17:17:17 Fertilizer 10KG",
+       name:"Bora NPK 17:17:17 Fertilizer",
        image:p1_img,
        price: "KSh2399",
    },
@@ -23,13 +23,13 @@ const products = [
    },
    {
        id:3,
-       name:"Evergrow Organic Fertilizer NPK+TE 50Kg",
+       name:"Evergrow Organic Fertilizer NPK+TE",
        image:p3_img,
        price: "KSh2300",
    },
    {
        id:4,
-       name:"DMBL Ruiru NPK 17-17-17 Fertilizer 25kg",
+       name:"DMBL Ruiru NPK 17-17-17 Fertilizer",
        image:p4_img,
        price: "KSh2850",
    },
@@ -53,7 +53,7 @@ const products = [
 },
 {
     id:10,
-    name:"Gold Chance Compound FOLIAR FERTILIZER 19:19:19 + Te 1kg",
+    name:"Gold Chance Compound FOLIAR FERTILIZER 19:19:19 + Te",
     image:p10_img,
     price: "KSh750",
 },

@@ -20,14 +20,14 @@
     },
     {
         id:3,
-        name:"Evergrow Organic Fertilizer NPK+TE 50Kg",
+        name:"Evergrow Organic Fertilizer NPK+TE",
         image:p3_img,
         new_price: "KSh2300",
         old_price: "KSh2500",
     },
     {
         id:4,
-        name:"DMBL Ruiru NPK 17-17-17 Fertilizer 25kg",
+        name:"DMBL Ruiru NPK 17-17-17 Fertilizer",
         image:p4_img,
         new_price: "KSh2850",
         old_price: "KSh3000",

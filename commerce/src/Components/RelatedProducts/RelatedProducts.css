@@ -17,8 +17,26 @@
     background: #252525;
 }
 .relatedproducts-item{
-    margin-left: 70px;
-    margin-top: 50px;
     display: flex;
-    gap: 0px;
+    flex-wrap: wrap;
+    width: 100%; 
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
 }
+.relatedproducts-item .item {
+    width: calc(25% - 20px);  /* Four items in a row */
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ddd; /* Border around each item */
+    border-radius: 5px; /* Slightly rounded corners */
+    padding: 16px; /* Space inside the border */
+    background-color: #fff; /* White background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.relatedproducts-item .item:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
