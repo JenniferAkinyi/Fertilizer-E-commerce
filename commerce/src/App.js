@@ -7,6 +7,7 @@ import {Product} from './Pages/Product'
 import { ShopCategory } from './Pages/ShopCategory';
 import { Login } from './Pages/Login';
 import { Signup } from './Pages/Signup';
+import { Delivery } from './Components/Delivery/Delivery';
 import {Cart} from './Pages/Cart';
 import { Footer } from './Components/Footer/Footer';
 
@@ -29,6 +30,7 @@ function App() {
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path="/signup" element={<Signup />} />
+        <Route path="/delivery" element={<Delivery />} />
         <Route path="/" element={<Login />} /> {/* Default route */}
       </Routes>
       <Footer/>

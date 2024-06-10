@@ -1,0 +1,50 @@
+.delivery{
+    width: 100%;
+    height: 120vh;
+    background: #fce3fe;
+    padding-top: 100px;
+}
+.delivery-container{
+    width: 580px;
+    height: 650px;
+    background: white;
+    margin: auto;
+    padding: 40px 60px;
+}
+.delivery-container h1{
+    margin: 20px 0px;
+}
+.delivery-container p{
+    font-weight: 600;
+}
+.delivery-fields{
+    display: flex;
+    flex-direction: column;
+    gap: 29px;
+    margin-top: 30px;
+}
+.delivery-fields input{
+    height: 40px;
+    width: 100%;
+    padding-left: 20px;
+    border: 1px solid #c9c9c9;
+    outline: none;
+    color: #5c5c5c;
+    font-size: 18px;
+}
+.delivery-fields p{
+    font-weight: 600;
+    text-align: center;
+}
+
+.delivery-container button{
+    width: 580px;
+    height: 60px;
+    color: white;
+    background: brown;
+    margin-top: 30px;
+    border: none;
+    font-size: 24px;
+    font-weight: 500;
+    cursor: pointer;
+}

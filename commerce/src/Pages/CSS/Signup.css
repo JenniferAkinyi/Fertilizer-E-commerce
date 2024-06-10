@@ -6,7 +6,7 @@
 }
 .signup-container{
     width: 580px;
-    height: 580px;
+    height: 650px;
     background: white;
     margin: auto;
     padding: 40px 60px;
@@ -21,7 +21,7 @@
     margin-top: 30px;
 }
 .signup-fields input{
-    height: 60px;
+    height: 40px;
     width: 100%;
     padding-left: 20px;
     border: 1px solid #c9c9c9;
@@ -29,6 +29,35 @@
     color: #5c5c5c;
     font-size: 18px;
 }
+.signup-fields p{
+    font-weight: 600;
+    text-align: center;
+}
+.signup-role{
+    height: 40px;
+    width: 100%;
+    padding-left: 20px;
+    border: 1px solid #c9c9c9;
+    outline: none;
+    color: #5c5c5c;
+    font-size: 18px;
+}
+.password-container {
+    position: relative;
+}
+
+.password-container input[type="password"] {
+    width: calc(100% - 40px); /* Adjust for padding and icon width */
+    padding-right: 40px; /* Adjust for icon width */
+}
+
+.toggle-password-visibility {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+} 
 .signup-container button{
     width: 580px;
     height: 60px;
