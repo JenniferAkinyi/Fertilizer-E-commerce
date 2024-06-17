@@ -5,7 +5,7 @@ import { UserContext } from '../Context/UserContext';
 const PrivateRoute = ({ children }) => {
   const { user } = useContext(UserContext);
 
-  return user && user.isAdmin ? children : <Navigate to="/login" />;
+  return user && user.isAdmin ? children : <Navigate to="/dashboard" />;
 };
 
 export default PrivateRoute;

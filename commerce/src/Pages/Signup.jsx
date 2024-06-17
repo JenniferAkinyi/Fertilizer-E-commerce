@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase'; // Ensure you import db from your firebase config
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 import './CSS/Signup.css';
 import eyeIcon from '../Components/Assets/open_eye.png';
 import eye_slashIcon from '../Components/Assets/closed_eye.png';
 
 export const Signup = () => {
   const [name, setName] = useState('');
+  const [role, setRole] = useState('User'); // Default role
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,9 +34,15 @@ export const Signup = () => {
 
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      // Redirect or show success message
       const user = userCredential.user;
-      console.log(user);
+
+      // Create a new user document in Firestore
+      await setDoc(doc(db, 'users', user.uid), {
+        name,
+        email: user.email,
+        role
+      });
+
       setSuccess('Sign up successful');
       navigate('/login'); // Redirect to login page
     } catch (error) {
@@ -60,7 +68,14 @@ export const Signup = () => {
               required
             />
             <p>Select Your Role</p>
-            <select name='role' className='signup-role' autoComplete="off" required>
+            <select
+              name='role'
+              className='signup-role'
+              autoComplete="off"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              required
+            >
               <option value="Admin">Admin</option>
               <option value="User">User</option>
               <option value="Distributor">Distributor</option>

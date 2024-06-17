@@ -15,7 +15,8 @@ export const UserProvider = ({ children }) => {
         try {
           const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
           if (userDoc.exists()) {
-            setUser({ uid: currentUser.uid, ...userDoc.data() });
+            const userData = userDoc.data();
+            setUser({ uid: currentUser.uid, ...userData });
           } else {
             console.error('User document does not exist');
             setUser(null);
@@ -40,12 +41,13 @@ export const UserProvider = ({ children }) => {
     setUser(null);
   };
 
-  const logout = () => {
-    auth.signOut().then(() => {
+  const logout = async () => {
+    try {
+      await auth.signOut();
       setUser(null);
-    }).catch((error) => {
+    } catch (error) {
       console.error('Error signing out:', error);
-    });
+    }
   };
 
   return (

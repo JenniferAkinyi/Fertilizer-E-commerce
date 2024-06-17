@@ -1,12 +1,12 @@
-// Login.jsx
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 import './CSS/Login.css';
 import eyeIcon from '../Components/Assets/open_eye.png';
 import eye_slashIcon from '../Components/Assets/closed_eye.png';
 import { UserContext } from '../Context/UserContext';
-
 
 export const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -30,14 +30,21 @@ export const Login = () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      console.log(user);
-      // Fetch user role from database (e.g., Firestore)
-  
-      login({ email: user.email, displayName: user.displayName || user.email.split('@')[0], role: user });
-      if (user === 'admin') {
-        navigate('/dashboard'); // Redirect to admin dashboard
+      
+      // Fetch user role from Firestore
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        login({ email: user.email, displayName: user.displayName || user.email.split('@')[0], role: userData.role });
+
+        if (userData.role === 'Admin') {
+          navigate('/dashboard'); // Redirect to admin dashboard
+        } else {
+          navigate('/'); // Redirect to shop page
+        }
       } else {
-        navigate('/'); // Redirect to shop page
+        console.error('No user document found!');
+        setEmailError('User data not found');
       }
     } catch (error) {
       console.error(error.message);
