@@ -80,12 +80,9 @@
     font-weight: 600;
     cursor: pointer;
 }
-.loginsignup-agree{
-    display: flex;
-    align-items: center;
-    margin-top: 25px;
-    gap: 20px;
-    color: #5c5c5c;
-    font-size: 18px;
-    font-weight: 500;
-}
+.success-message {
+    color: green;
+    margin-bottom: 1rem;
+  }
+  
+

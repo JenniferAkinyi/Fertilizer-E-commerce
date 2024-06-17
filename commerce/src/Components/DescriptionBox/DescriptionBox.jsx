@@ -7,7 +7,8 @@ export const DescriptionBox = () => {
         <div className="descriptionbox-nav-box">Description</div>
         <div className="descriptionbox-nav-box fade">Reviews {14}</div>
       </div>
-      <div className="descriptionbox-description">
+      <div className="de
+      scriptionbox-description">
         <p>The Digital Farmer is an online platform that facilitates buying and selling 
           of fertilizers over the internet as a virtual marketplace where businesses and individuals
           showcase their produts,interact with customers and conduct transactions without the need for a physical presence.

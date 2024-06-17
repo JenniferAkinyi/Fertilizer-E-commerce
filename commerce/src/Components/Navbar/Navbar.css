@@ -42,6 +42,7 @@
     display: flex;
     align-items: center;
     gap: 45px;
+    margin-left: 20px;
 }
 .nav-login-cart button{
     width: 157px;
@@ -54,6 +55,7 @@
     font-weight: 500;
     background: white;
     cursor: pointer;
+    
 }
 .nav-login-cart button:active{
     background: brown;
@@ -70,4 +72,9 @@
     font-size: 14px;
     background: red;
     color: white;
+}
+.user-profile img{
+    width: 40px;
+    height: auto;
+    border-radius: 50%;
 }
