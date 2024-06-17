@@ -14,6 +14,7 @@ import { UserProvider } from './Context/UserContext';
 import Profile from './Components/Profile/Profile';
 import ProtectedRoute from './ProtectedRoute';
 
+
 import AddProducts from './Admin/AddProducts';
 import AllProducts from './Admin/AllProducts';
 import Dashboard from './Admin/Dashboard';
@@ -25,7 +26,7 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <Routes>
-            
+           
             <Route path='/' element={<Shop />} />
             <Route path='/nitrates' element={<ShopCategory category="nitrate" />} />
             <Route path='/phosphates' element={<ShopCategory category="phosphate" />} />
@@ -41,12 +42,12 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/" element={<Login />} />
 
-            <Route path='/*' element={<ProtectedRoute/>}>
+            <Route element={<ProtectedRoute/>}>
               
-              <Route path="delivery" element={<Delivery />} />
-              <Route path="dashboard" element={<Dashboard />} />
-              <Route path="dashboard/all-products" element={<AllProducts/>} />
-              <Route path="dashboard/all-products" element={<AddProducts />} />
+              <Route path="/delivery" element={<Delivery />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard/all-products" element={<AllProducts/>} />
+              <Route path="/dashboard/all-products" element={<AddProducts />} />
             </Route>
 
 

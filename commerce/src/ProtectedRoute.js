@@ -14,7 +14,7 @@ const ProtectedRoute = () => {
   }
 
   if (user.role !== 'admin') {
-    return <Navigate to="/" />;
+    return <Navigate to="/dashboard" />;
   }
 
   return <Outlet />;
