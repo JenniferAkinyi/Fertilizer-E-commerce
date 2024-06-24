@@ -43,9 +43,7 @@ export const ProductDisplay = (props) => {
               <div className="productdisplay-right-price">{product.price}</div>
             </div>
             <div className="productdisplay-right-description">
-            Boost the growth of your plants with Osho Easygro Vegetative Fertilizer, 
-            specially formulated to support robust vegetative development. Ideal for a wide range of crops, this high-quality fertilizer 
-            provides essential nutrients that promote lush, healthy foliage and strong stems.
+            {product.description}
             </div>
             <div className="productdisplay-right-number">
               <h1>Select Number of Bags</h1>

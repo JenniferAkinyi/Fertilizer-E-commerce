@@ -2,7 +2,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
-import logo from '../Assets/logo.png';
+import logo from '../Assets/logo.jpeg';
 import profile_pic from '../Assets/profile.png';
 import cart_icon from '../Assets/cart.png';
 import { ShopContext } from '../../Context/ShopContext';
@@ -11,11 +11,12 @@ import { getDownloadURL, ref, getStorage } from 'firebase/storage';
 
 export const Navbar = () => {
   const [menu, setMenu] = useState("shop");
-  const { getTotalCartItems } = useContext(ShopContext);
+  const { getTotalCartItems, categories } = useContext(ShopContext);
   const [profilePicture, setProfilePicture] = useState('');
   const { user } = useContext(UserContext);
   const storage = getStorage();
   const location = useLocation();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -30,9 +31,14 @@ export const Navbar = () => {
     }
   }, [user, storage]);
 
-  if (location.pathname.startsWith('/admin')) {
+  if (location.pathname.startsWith('/dashboard')) {
     return null; // Don't render Navbar for admin routes
   }
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
 
   return (
     <div className='navbar'>
@@ -41,13 +47,30 @@ export const Navbar = () => {
         <p>THE DIGITAL FARMER</p>
       </div>
       <ul className='nav-menu'>
-        <li onClick={() => { setMenu("shop") }}><Link style={{ textDecoration: 'none' }} to='/'>Shop</Link>{menu === "shop" ? <hr /> : <></>}</li>
-        <li onClick={() => { setMenu("nitrates") }}><Link style={{ textDecoration: 'none' }} to='/nitrates'>Nitrogen</Link>{menu === "nitrates" ? <hr /> : <></>}</li>
-        <li onClick={() => { setMenu("phosphates") }}><Link style={{ textDecoration: 'none' }} to='/phosphates'>Phosphorus</Link>{menu === "phosphates" ? <hr /> : <></>}</li>
-        <li onClick={() => { setMenu("potassiums") }}><Link style={{ textDecoration: 'none' }} to='/potassiums'>Potassium</Link>{menu === "potassiums" ? <hr /> : <></>}</li>
-        <li onClick={() => { setMenu("organics") }}><Link style={{ textDecoration: 'none' }} to='/organics'>Organic</Link>{menu === "organics" ? <hr /> : <></>}</li>
-        <li onClick={() => { setMenu("npks") }}><Link style={{ textDecoration: 'none' }} to='/npks'>NPK</Link>{menu === "npks" ? <hr /> : <></>}</li>
+      <li onClick={() => { setMenu("shop") }}>
+        <Link style={{ textDecoration: 'none' }} to='/'>Shop</Link>
+        {menu === "shop" ? <hr /> : <></>}
+      </li>
+      <li className='nav-category dropdown' onClick={toggleDropdown}>
+        <p>Categories</p>
+        {isDropdownOpen && (
+          <ul className='dropdown-menu'>
+            {categories.map(category => (
+              <li key={category.id} onClick={() => { setMenu(category.id) }}>
+                <Link to={`/${category.name}`} onClick={() => setIsDropdownOpen(false)}>
+                  {category.name}
+                </Link>
+                {menu === category.id ? <hr /> : <></>}
+              </li>
+            ))}
+          </ul>
+        )}
+      </li>
+
+        
       </ul>
+      
+
       <div className='nav-login-cart'>
         <Link to='/cart'><img src={cart_icon} alt='' /></Link>
         <div className='nav-cart-count'>{getTotalCartItems()}</div>

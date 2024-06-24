@@ -1,3 +1,4 @@
+// src/Context/UserContext.jsx
 import React, { createContext, useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
@@ -15,8 +16,7 @@ export const UserProvider = ({ children }) => {
         try {
           const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
           if (userDoc.exists()) {
-            const userData = userDoc.data();
-            setUser({ uid: currentUser.uid, ...userData });
+            setUser({ uid: currentUser.uid, ...userDoc.data() });
           } else {
             console.error('User document does not exist');
             setUser(null);
@@ -41,13 +41,12 @@ export const UserProvider = ({ children }) => {
     setUser(null);
   };
 
-  const logout = async () => {
-    try {
-      await auth.signOut();
+  const logout = () => {
+    auth.signOut().then(() => {
       setUser(null);
-    } catch (error) {
+    }).catch((error) => {
       console.error('Error signing out:', error);
-    }
+    });
   };
 
   return (

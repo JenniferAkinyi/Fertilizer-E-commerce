@@ -5,7 +5,13 @@ import { ShopContext } from '../../Context/ShopContext';
 import remove_icon from '../Assets/cart_cross_icon.png';
 
 export const CartItems = () => {
-    const { getTotalCartAmount, all_product, cartItems, removeFromCart } = useContext(ShopContext);
+    const { getTotalCartAmount, allProduct, cartItems, removeFromCart } = useContext(ShopContext);
+
+    // Check if allProduct is not yet available
+    console.log(allProduct)
+    if (!allProduct) {
+        return <div>Loading...</div>; // or any other loading indicator
+    }
 
     const totalAmount = getTotalCartAmount();
     const deliveryFee = totalAmount * 0.05; // 5% of the total cost
@@ -22,7 +28,7 @@ export const CartItems = () => {
                 <p>Remove</p>
             </div>
             <hr />
-            {all_product.map((product) => {
+            {allProduct.map((product) => {
                 if (cartItems[product.id] > 0) {
                     return (
                         <div key={product.id}>

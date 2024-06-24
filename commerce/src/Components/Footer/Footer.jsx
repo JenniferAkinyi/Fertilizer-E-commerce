@@ -1,6 +1,6 @@
 import React from 'react'
 import './Footer.css'
-import logo from '../Assets/logo.png'
+import logo from '../Assets/logo.jpeg'
 import instagram_icon from '../Assets/instagram_icon.png'
 import facebook_icon from '../Assets/facebook_icon.png'
 import whatsapp_icon from '../Assets/whatsapp_icon.png'
