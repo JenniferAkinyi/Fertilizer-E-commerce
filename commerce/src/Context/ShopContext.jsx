@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { db } from "../firebase"; // Ensure correct Firebase setup import
+import { db } from "../firebase"; 
 import { collection, getDocs } from "firebase/firestore";
 
 export const ShopContext = createContext(null);
@@ -18,6 +18,8 @@ const ShopContextProvider = (props) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
+
+// Fetch products from Firestore
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -28,26 +30,12 @@ const ShopContextProvider = (props) => {
         setFilteredProducts(productList);
         setCartItems(getDefaultCart(productList));
 
-        // Fetch categories if needed
-        // const categoriesCollection = collection(db, 'Products/Fertilizer/Categories');
-        // const categorySnapshot = await getDocs(categoriesCollection);
-        // const categoryList = categorySnapshot.docs.map(doc => doc.id); // Assuming categories are the document IDs
-        // setCategories(categoryList);
-
       } catch (error) {
         console.error("Error fetching products: ", error);
       }
     };
 
-    const filterProductsByCategory = (category) => {
-      if (category === 'all') {
-        setFilteredProducts(allProduct);
-      } else {
-        const filtered = allProduct.filter(product => product.category === category.name);
-        setFilteredProducts(filtered);
-      }
-    };
-
+// Fetch categories from Firestore
     const fetchCategories = async () => {
       try {
         const categoriesCollection = collection(db, 'Products/Fertilizer/Categories');
@@ -62,6 +50,16 @@ const ShopContextProvider = (props) => {
     fetchProducts();
     fetchCategories();
   }, []);
+
+  // Filter products based on category
+  const filterProductsByCategory = (category) => {
+    if (category === 'all') {
+      setFilteredProducts(allProduct);
+    } else {
+      const filtered = allProduct.filter(product => product.category === category.name);
+      setFilteredProducts(filtered);
+    }
+  };
 
   const addToCart = (itemId, quantity) => {
     setCartItems((prev) => ({ ...prev, [itemId]: (prev[itemId] || 0) + quantity }));
@@ -100,7 +98,7 @@ const ShopContextProvider = (props) => {
     getTotalCartAmount,
     allProduct,
     filteredProducts, 
-    // filterProductsByCategory,
+    filterProductsByCategory,
     categories,
     cartItems,
     addToCart,

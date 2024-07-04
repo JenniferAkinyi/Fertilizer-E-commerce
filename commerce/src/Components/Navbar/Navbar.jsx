@@ -48,7 +48,7 @@ export const Navbar = () => {
       </div>
       <ul className='nav-menu'>
       <li onClick={() => { setMenu("shop") }}>
-        <Link style={{ textDecoration: 'none' }} to='/'>Shop</Link>
+        <Link style={{ textDecoration: 'none' }} to='/'>Home</Link>
         {menu === "shop" ? <hr /> : <></>}
       </li>
       <li className='nav-category dropdown' onClick={toggleDropdown}>
