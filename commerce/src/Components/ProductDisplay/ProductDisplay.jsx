@@ -58,4 +58,3 @@ export const ProductDisplay = (props) => {
     </div>
   )
 }
-

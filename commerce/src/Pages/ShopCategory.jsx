@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './CSS/ShopCategory.css';
 import { Item } from '../Components/Item/Item';
 import { ShopContext } from '../Context/ShopContext';
@@ -6,18 +6,17 @@ import { useParams } from 'react-router-dom';
 
 export const ShopCategory = () => {
   const { category } = useParams();
-  const [filteredProducts, filterProductsByCategory] = useContext(ShopContext);
+  const { filteredProducts, filterProductsByCategory } = useContext(ShopContext);
 
   useEffect(() => {
-    if (category){
-      filterProductsByCategory(category);
-    }
+    console.log("Current Category:", category); // Debug line
+    filterProductsByCategory(category);
   }, [category, filterProductsByCategory]);
-    
+
   return (
     <div className='shop-category'>
       <div className="shopcategory-indexSort">
-          <h1>{category.toUpperCase()} FERTiliZER</h1>
+        <h1>{category.toUpperCase()}</h1>
       </div>
       <div className="shopcategory-products">
         {filteredProducts.length > 0 ? (
