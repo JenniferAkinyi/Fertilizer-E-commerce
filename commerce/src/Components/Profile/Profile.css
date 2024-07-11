@@ -35,6 +35,9 @@
     color: #5c5c5c;
     font-size: 18px;
 }
+.fields img{
+    border-radius: 50%;
+}
 .profile-button button{
     width: 550px;
     height: 50px;

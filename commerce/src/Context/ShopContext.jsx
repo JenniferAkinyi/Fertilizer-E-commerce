@@ -64,7 +64,7 @@ const ShopContextProvider = (props) => {
     const filtered = category === 'all'
       ? allProduct
       : allProduct.filter(product => {
-        console.log("Product category:", product);
+        console.log("Product category:", product.category);
         return product.category === category;
       });
     console.log("Filtered Products", filtered)

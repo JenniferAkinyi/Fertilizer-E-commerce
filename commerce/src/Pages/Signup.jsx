@@ -8,6 +8,7 @@ import eyeIcon from '../Components/Assets/open_eye.png';
 import eye_slashIcon from '../Components/Assets/closed_eye.png';
 
 export const Signup = () => {
+  
   const [name, setName] = useState('');
   const [role, setRole] = useState('User'); // Default role
   const [showPassword, setShowPassword] = useState(false);
@@ -21,6 +22,7 @@ export const Signup = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+  
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -121,6 +123,7 @@ export const Signup = () => {
                 onClick={togglePasswordVisibility}
               />
             </div>
+            
           </div>
           <button type='submit'>Continue</button>
         </form>

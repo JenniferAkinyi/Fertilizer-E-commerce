@@ -99,8 +99,12 @@
     background: red;
     color: white;
 }
-.user-profile img{
-    width: 40px;
-    height: auto;
-    border-radius: 50%;
+.user-greeting{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 50px;
+    color: brown;
+    font-size: 17px;
+    font-weight: 600;
 }

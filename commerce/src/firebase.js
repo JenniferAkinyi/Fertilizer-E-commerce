@@ -31,12 +31,16 @@ export {auth, app};
 export { db };
 
 //storage
-export async function upload( file, currentUser, setLoading ) {
-  const fileRef = ref(storage, `${currentUser.uid}/profilePicture.png`);
+export async function upload( file, user, setLoading, updateProfile ) {
+  const fileRef = ref(storage, `${user.uid}/profile.png`);
 
   setLoading(true);
+
   const snapshot = await uploadBytes(fileRef, file);
+  updateProfile();
+
   setLoading(false);
   alert('Uploaded file!');
+
   
 }
