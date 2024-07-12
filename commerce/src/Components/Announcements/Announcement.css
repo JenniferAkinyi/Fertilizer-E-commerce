@@ -1,0 +1,25 @@
+.announcements {
+    padding: 20px;
+  }
+  
+  .announcement-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+  }
+  .announcement-item.unviewed {
+    background-color: wheat;
+    cursor: pointer;
+  }
+
+  .announcement-item h2 {
+    margin: 0 0 10px;
+  }
+  
+  .announcement-item p {
+    margin: 0;
+  }
+  

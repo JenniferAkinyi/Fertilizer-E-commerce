@@ -8,6 +8,7 @@ import { Signup } from './Pages/Signup';
 import { Delivery } from './Components/Delivery/Delivery';
 import { Cart } from './Pages/Cart';
 import { UserProvider } from './Context/UserContext';
+import  Announcement  from './Components/Announcements/Announcement';
 import Profile from './Components/Profile/Profile';
 import Layout from './Components/Layout/Layout';
 
@@ -27,6 +28,7 @@ function App() {
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<Signup />} />
               <Route path="delivery" element={<Delivery />} />
+              <Route path="announcements" element={<Announcement />} />
             </Route>
           </Routes>
         </BrowserRouter>

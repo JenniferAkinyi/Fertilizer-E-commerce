@@ -10,9 +10,10 @@ import eye_slashIcon from '../Components/Assets/closed_eye.png';
 export const Signup = () => {
   
   const [name, setName] = useState('');
-  const [role, setRole] = useState('User'); // Default role
+  const [roleValue, setRoleValue] = useState('User'); // Default role
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
+
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
@@ -42,7 +43,9 @@ export const Signup = () => {
       await setDoc(doc(db, 'users', user.uid), {
         name,
         email: user.email,
-        role
+        roleValue,
+        password,
+        userid: user.uid,
       });
 
       setSuccess('Sign up successful');
@@ -74,8 +77,8 @@ export const Signup = () => {
               name='role'
               className='signup-role'
               autoComplete="off"
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
+              value={roleValue}
+              onChange={(e) => setRoleValue(e.target.value)}
               required
             >
               <option value="Admin">Admin</option>
