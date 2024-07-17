@@ -6,7 +6,7 @@ import cart_icon from '../Assets/cart.png';
 import message from '../Assets/message.png';
 import { ShopContext } from '../../Context/ShopContext';
 import { UserContext } from '../../Context/UserContext';
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, doc, getDoc, updateDoc } from 'firebase/firestore';
 
 export const Navbar = () => {
   const [menu, setMenu] = useState("shop");
@@ -22,7 +22,11 @@ export const Navbar = () => {
       const db = getFirestore();
       const announcementsCol = collection(db, 'Announcements');
       const announcementsSnapshot = await getDocs(announcementsCol);
-      const announcementsList = announcementsSnapshot.docs.map(doc => doc.data());
+      const announcementsList = announcementsSnapshot.docs.map(doc => ({
+        id: doc.id, 
+        ...doc.data(),
+        viewed: false,
+    }));
       console.log('Fetched Announcements:', announcementsList); // Log fetched announcements
       setAnnouncements(announcementsList);
     
@@ -53,26 +57,44 @@ export const Navbar = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const handleAnnouncementClick = (id) => {
-    // Update local storage to mark announcement as viewed
-    let viewedAnnouncements = JSON.parse(localStorage.getItem('viewedAnnouncements')) || [];
-    if (!viewedAnnouncements.includes(id)) {
-      viewedAnnouncements.push(id);
-      localStorage.setItem('viewedAnnouncements', JSON.stringify(viewedAnnouncements));
+  const handleAnnouncementClick = async (id) => {
+    // Check if user is defined
+    if (!user) return;
 
-      // Update viewed status in state and count
-      const updatedAnnouncements = announcements.map(announcement => {
-        if (announcement.id === id) {
-          return { ...announcement, viewed: true };
-        }
-        return announcement;
-      });
-      setAnnouncements(updatedAnnouncements);
+    try{
+      const db= getFirestore();
+      const userDocRef = doc(db, 'Users', user.uid);
+    
+      // Get current user's data
+      const userDoc = await getDoc(userDocRef);
+      if (userDoc.exists()) {
+        const viewedAnnouncements = userDoc.data().viewedAnnouncements || [];
 
-      const unviewed = updatedAnnouncements.filter(announcement => !announcement.viewed);
-      setUnviewedCount(unviewed.length);
+        // Update viewed announcements if not already viewed
+        if (!viewedAnnouncements.includes(id)) {
+          viewedAnnouncements.push(id);
+          await updateDoc(userDocRef, {
+            viewedAnnouncements: viewedAnnouncements
+          });
+
+        // Update local state to reflect viewed announcements
+        const updatedAnnouncements = announcements.map(announcement => {
+          if (announcement.id === id) {
+            return { ...announcement, viewed: true };
+          }
+          return announcement;
+        });
+        setAnnouncements(updatedAnnouncements);
+
+        // Update unviewed count
+        const unviewed = updatedAnnouncements.filter(announcement => !announcement.viewed);
+        setUnviewedCount(unviewed.length);
+      }
     }
-  };
+  } catch (error) {
+    console.error('Error updating viewed announcements:', error);
+  }
+};
 
   if (location.pathname.startsWith('/dashboard')) {
     return null; // Don't render Navbar for admin routes
@@ -124,6 +146,7 @@ export const Navbar = () => {
       </div>
     </div>
   );
+  
 };
 
 export default Navbar;

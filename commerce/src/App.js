@@ -11,12 +11,14 @@ import { UserProvider } from './Context/UserContext';
 import  Announcement  from './Components/Announcements/Announcement';
 import Profile from './Components/Profile/Profile';
 import Layout from './Components/Layout/Layout';
+import { CurrentProductProvider } from './Context/CurrentProductContext';
 
 
 function App() {
   return (
     <div>
       <UserProvider>
+      <CurrentProductProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout />}>
@@ -32,6 +34,7 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
+        </CurrentProductProvider>
       </UserProvider>
     </div>
   );
