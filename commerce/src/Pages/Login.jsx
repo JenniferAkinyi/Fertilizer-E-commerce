@@ -14,6 +14,7 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const { login } = useContext(UserContext);
   const auth = getAuth();
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ export const Login = () => {
     e.preventDefault();
     setEmailError('');
     setPasswordError('');
+    setSuccessMessage('');
 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -37,6 +39,7 @@ export const Login = () => {
         const userData = userDoc.data();
         login({ email: user.email, displayName: user.displayName || user.email.split('@')[0], role: userData.role });
 
+        setSuccessMessage('Login successfull!')
         if (userData.role === 'Admin') {
           navigate('/dashboard'); // Redirect to admin dashboard
         } else {
@@ -92,6 +95,7 @@ export const Login = () => {
             {passwordError && <p className="error-message">{passwordError}</p>}
           </div>
           <button type='submit'>Continue</button>
+          {successMessage && <p className='success-message'>{successMessage}</p>}
           <p>Forgot Password</p>
         </form>
         <p className='loginsignup-login'>
